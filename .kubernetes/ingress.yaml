@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nestjs-k8s
+  labels:
+    name: nestjs-k8s
+  annotations:
+    kubernetes.io/spec.ingressClassName: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: nestjs-k8s
+            port: 
+              number: 3000
